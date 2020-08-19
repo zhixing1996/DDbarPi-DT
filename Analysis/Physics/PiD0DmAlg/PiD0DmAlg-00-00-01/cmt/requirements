@@ -1,0 +1,20 @@
+package PiD0DmAlg
+author Chunlei Liu  <chl56@andrew.cmu.edu>
+
+use BesPolicy BesPolicy-01-*
+use GaudiInterface GaudiInterface-01-* External
+
+use DstEvent	 DstEvent-*    Event
+use EventModel   EventModel-*  Event 
+use EvtRecEvent  EvtRecEvent-*      Event
+use MdcRawEvent  MdcRawEvent-* Mdc
+use McTruth      McTruth-*     Event
+use ReconEvent   ReconEvent-*  Event
+use ParticleID   ParticleID-*  Analysis	
+use VertexFit    VertexFit-*   Analysis	
+use DTagTool     DTagTool-*    Analysis
+use BesROOT      BesROOT-*     External
+use MeasuredEcmsSvc MeasuredEcmsSvc-* Utilities
+
+apply_pattern component_library
+library PiD0DmAlg  *.cxx  components/*.cxx
