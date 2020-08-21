@@ -198,6 +198,7 @@ StatusCode PiD0Dm::execute() {
     int ncharge = 0;
     double MassD0 = 1.86486;
     double MassDp = 1.86962;
+    double MassPi0 = 0.13498;
     double CHISQ = 999.;
     HepLorentzVector besKpipp4 = 0;
     HepLorentzVector besKD0p4 = 0;
@@ -468,18 +469,6 @@ StatusCode PiD0Dm::finalize() {
     std::cout << "DTagList is not Empty " << Ncut1  << std::endl;
     std::cout << "Best tagD             " << Ncut2  << std::endl;
     std::cout << "Best tagDandpipi      " << Ncut8  << std::endl;
-    std::cout << "Best tagDtwo          " << Ncut9  << std::endl;
-    std::cout << "Best tagD0            " << Ncut7  << std::endl;
-    std::cout << "Best D0to00           " << Ncut5  << std::endl;
-    std::cout << "Best D0to01           " << Ncut6  << std::endl;
-    std::cout << "Best D0to03           " << Ncut10 << std::endl;
-    std::cout << "Best D0to11           " << Ncut11 << std::endl;
-    std::cout << "Best D0to13           " << Ncut12 << std::endl;
-    std::cout << "Best D0to33           " << Ncut13 << std::endl;
-    std::cout << "Best D0to04           " << Ncut14 << std::endl;
-    std::cout << "Best D0to14           " << Ncut15 << std::endl;
-    std::cout << "Best D0to34           " << Ncut16 << std::endl;
-    std::cout << "Best D0to44           " << Ncut17 << std::endl;
     std::cout << "Good pipi             " << Ncut3  << std::endl;
     std::cout << "Pass kfit             " << Ncut4  << std::endl;
     std::cout << "Pass 6C kfit          " << Ncut41 << std::endl;
