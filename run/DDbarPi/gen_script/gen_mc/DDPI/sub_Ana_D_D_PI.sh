@@ -10,8 +10,8 @@ fi
 
 WORKAREA=/besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT
 for ECM in ${ECMS[@]}; do
-    mkdir -p $WORKAREA/run/DDbarPi-DT/rootfile/mc/DDPI/$ECM
-    mkdir -p $WORKAREA/run/DDbarPi-DT/jobs_text/mc/DDPI/$ECM
+    mkdir -p $WORKAREA/run/DDbarPi/rootfile/mc/DDPI/$ECM
+    mkdir -p $WORKAREA/run/DDbarPi/jobs_text/mc/DDPI/$ECM
     cd $WORKAREA/run/DDbarPi/jobs_text/mc/DDPI/$ECM
     rm -rf mc_D_D_PI_PHSP_$ECM*txt
     cp -rf $WORKAREA/python/make_mc.py ./

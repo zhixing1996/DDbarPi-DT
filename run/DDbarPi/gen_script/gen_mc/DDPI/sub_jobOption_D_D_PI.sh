@@ -35,11 +35,11 @@ for ECM in ${ECMS[@]}; do
     cp -r $Script_Dir/jobOptions_sim_sig_D_D_PI_PHSP_tempE_705.sh jobOptions_sim_sig_D_D_PI_PHSP_${ECM}_705.sh
     cp -r $Script_Dir/jobOptions_rec_sig_D_D_PI_PHSP_tempE_705.sh jobOptions_rec_sig_D_D_PI_PHSP_${ECM}_705.sh
     threshold=4.42
-    sh jobOptions_sim_sig_D_D_PI_PHSP_${ECM}_705.sh 0 99 $ECM ${CMS[$COUNT]} 5000 $threshold ${RUNNO_LOW[$COUNT]} ${RUNNO_UP[$COUNT]}
-    sh jobOptions_rec_sig_D_D_PI_PHSP_${ECM}_705.sh 0 99 $ECM
+    sh jobOptions_sim_sig_D_D_PI_PHSP_${ECM}_705.sh 0 199 $ECM ${CMS[$COUNT]} 5000 $threshold ${RUNNO_LOW[$COUNT]} ${RUNNO_UP[$COUNT]}
+    sh jobOptions_rec_sig_D_D_PI_PHSP_${ECM}_705.sh 0 199 $ECM
     rm -rf /besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT/run/DDbarPi/rtraw/DDPI/$ECM/*.rtraw
     rm -rf /besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT/run/DDbarPi/dst/DDPI/$ECM/*.dst
     cp -rf /besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT/run/DDbarPi/gen_script/gen_mc/subSimRec.sh ./
-    sh subSimRec.sh jobOptions_sim_sig_D_D_PI_PHSP_$ECM jobOptions_rec_sig_D_D_PI_PHSP_$ECM subSimRec_D_D_PI_$ECM 0 99
+    sh subSimRec.sh jobOptions_sim_sig_D_D_PI_PHSP_$ECM jobOptions_rec_sig_D_D_PI_PHSP_$ECM subSimRec_D_D_PI_$ECM 0 199
     COUNT=$((${COUNT}+1))
 done

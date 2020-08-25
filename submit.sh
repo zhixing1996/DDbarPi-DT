@@ -354,8 +354,9 @@ case $option in
                mv Get_Info_MC_DDPI_705 ../logfile
                cd /besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT/run/DDbarPi/logfile
                chmod u+x Get_Info_MC_DDPI_705
-               mkdir -p jobs.out jobs.err
-               hep_sub -g physics Get_Info_MC_DDPI_705 -o jobs.out -e jobs.err
+               bash Get_Info_MC_DDPI_705
+               rm -r Get_Info_MC_DDPI_705
+               cd /besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT
            else
                echo "Please add the MC simulation joboption files!"
            fi
