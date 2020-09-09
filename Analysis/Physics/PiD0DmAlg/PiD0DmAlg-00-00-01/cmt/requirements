@@ -17,4 +17,4 @@ use BesROOT      BesROOT-*     External
 use MeasuredEcmsSvc MeasuredEcmsSvc-* Utilities
 
 apply_pattern component_library
-library PiD0DmAlg  *.cxx  components/*.cxx
+library PiD0DmAlg  *.cxx
