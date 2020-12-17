@@ -18,6 +18,11 @@ for ECM in ${ECMS[@]}; do
             rm -rf DDbarPi_incMC_DD_4600-0.root
         fi
     fi
+    if [ "$ECM" == "4680" ]; then
+        if [ "$TYPE" == "hadron" ]; then
+            rm -rf DDbarPi_incMC_hadron_4680-0.root
+        fi
+    fi
     rm -rf DDbarPi_incMC_${TYPE}_${ECM}.root
     hadd DDbarPi_incMC_${TYPE}_${ECM}.root *.root
 done

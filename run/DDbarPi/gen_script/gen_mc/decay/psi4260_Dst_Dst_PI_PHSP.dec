@@ -1,0 +1,7 @@
+Decay  psi(4260)
+1.00  D*+  anti-D*0      pi-  PHSP;
+1.00  D*0  D*-           pi+  PHSP;
+1.00  D*+  D*-           pi0  PHSP;
+1.00  D*0  anti-D*0      pi0  PHSP;
+Enddecay
+End

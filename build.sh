@@ -25,9 +25,10 @@ usage_0_0() {
 
 usage_0_1() {
     printf "\n\t%-9s  %-40s"  ""         ""   
-    printf "\n\t%-9s  %-40s"  "0.1.1"    "Build DDECAYALGROOT module(01) ---- haven't added missing track"
-    printf "\n\t%-9s  %-40s"  "0.1.2"    "Build DDECAYALGROOT module(02) ---- add missing track (wrong signed background)"
-    printf "\n\t%-9s  %-40s"  "0.1.3"    "Build DDECAYALGROOT module(03) ---- add missing track (sideband)"
+    printf "\n\t%-9s  %-40s"  "0.1.1"    "Build DDECAYALGROOT module(01) ---- Hu Yu's codes"
+    printf "\n\t%-9s  %-40s"  "0.1.2"    "Build DDECAYALGROOT module(02) ---- Add mass constrain in each region (save the best candidate in one event)"
+    printf "\n\t%-9s  %-40s"  "0.1.3"    "Build DDECAYALGROOT module(03) ---- Add mass constrain in each region (save all candidates in one event)"
+    printf "\n\t%-9s  %-40s"  "0.1.4"    "Build DDECAYALGROOT module(04) ---- Add mass constrain in each region (improe saving and add secondary vertex fit for D0 and D-)"
     printf "\n\t%-9s  %-40s"  ""         ""
     printf "\n"
 }
@@ -80,7 +81,31 @@ case $option in
     0.1.1) echo "Building DDECAYALGROOT module(01) ..."
            rm -rf ./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-01/x86_*
            cd ./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-01/cmt
-           cmt config
+           cmt broadcast cmt config
+           gmake
+           source setup.sh
+	       ;;
+
+    0.1.2) echo "Building DDECAYALGROOT module(02) ..."
+           rm -rf ./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-02/x86_*
+           cd ./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-02/cmt
+           cmt broadcast cmt config
+           gmake
+           source setup.sh
+	       ;;
+
+    0.1.3) echo "Building DDECAYALGROOT module(03) ..."
+           rm -rf ./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-03/x86_*
+           cd ./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-03/cmt
+           cmt broadcast cmt config
+           gmake
+           source setup.sh
+	       ;;
+
+    0.1.4) echo "Building DDECAYALGROOT module(04) ..."
+           rm -rf ./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-04/x86_*
+           cd ./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-04/cmt
+           cmt broadcast cmt config
            gmake
            source setup.sh
 	       ;;

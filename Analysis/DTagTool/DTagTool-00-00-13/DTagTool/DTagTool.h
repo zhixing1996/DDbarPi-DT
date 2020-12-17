@@ -37,7 +37,6 @@ class DTagTool{
 				void setPID(bool pid) {m_pid = pid;}
 
 
-
 				EvtRecDTagCol::iterator modes_begin(){ return m_iterbegin;}
 				EvtRecDTagCol::iterator modes_end(){ return m_iterend;}
 				EvtRecPi0Col::iterator pi0_begin(){ return m_pi0iterbegin;}
@@ -59,17 +58,19 @@ class DTagTool{
 				bool findSTag(EvtRecDTag::DecayMode mode, int tagcharm);
 				bool findSTag(EvtRecDTag::DecayMode mode);
 				bool findDTag(EvtRecDTag::DecayMode mode1, EvtRecDTag::DecayMode mode2,string smass="mbc");
-				bool findDDTag(EvtRecDTag::DecayMode mode1, EvtRecDTag::DecayMode mode2,string smass="mbc");
+				bool findDDTag(EvtRecDTag::DecayMode mode1, EvtRecDTag::DecayMode mode2, double MassD0Cand, double MassDmCand, string smass="mbc");
 				bool findDTag(EvtRecDTag::DecayMode mode1, int tagcharm1,EvtRecDTag::DecayMode mode2, int tagcharm2,string smass="mbc" );
-				bool findADTag(EvtRecDTag::DecayMode mode1, EvtRecDTag::DecayMode mode2);
+				bool findADTag(EvtRecDTag::DecayMode mode1, EvtRecDTag::DecayMode mode2, double runNo, double evtNo);
 				bool findADTag(EvtRecDTag::DecayMode mode1, int tagcharm1,EvtRecDTag::DecayMode mode2, int tagcharm2 );
 
 				bool findSTag(int mode, int tagcharm);
 				bool findSTag(int mode);
 				bool findDTag(int mode1, int mode2, string smass="mbc");
-				bool findDDTag(int mode1, int mode2, string smass="mbc");
+				bool findDDTag(int mode1, int mode2, double MassD0Cand, double MassDmCand, string smass="mbc");
+				int findDDCombination() {return n_combination;}
+				int findDDIndex() {return INDEX;}
 				bool findDTag(int mode1, int tagcharm1,int mode2, int tagcharm2,string smass="mbc" );
-				bool findADTag(int mode1, int mode2);
+				bool findADTag(int mode1, int mode2, double runNo, double evtNo);
 				bool findADTag(int mode1, int tagcharm1,int mode2, int tagcharm2);
 
 
@@ -124,6 +125,8 @@ class DTagTool{
 				ISimplePIDSvc*    m_simplePIDSvc;
 
 
+                int n_combination;
+                int INDEX;
 
 				EvtRecDTagCol::iterator m_iterbegin;
 				EvtRecDTagCol::iterator m_iterend;

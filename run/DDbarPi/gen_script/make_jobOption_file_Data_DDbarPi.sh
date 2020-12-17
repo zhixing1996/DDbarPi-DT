@@ -9,8 +9,8 @@ fi
 if [ "$BOSS" = "705" ]; then
     # ECMS=("4612" "4620" "4640" "4660" "4680" "4700")
     # CMS=("4.61208" "4.63129" "4.64366" "4.66414" "4.68271" "4.70044")
-    ECMS=("4680")
-    CMS=("4.681208")
+    ECMS=("4680" "4700")
+    CMS=("4.681208" "4.70044")
 fi
 
 COUNT=0
@@ -53,14 +53,17 @@ for ECM in ${ECMS[@]}; do
         echo "ChargedDSelector.UseDeltaMassCuts = true;                                                     " >> ${JobText_SaveDir}/${jobOptions}
         echo "ChargedDSelector.DDeltaMassMinCut = -0.12;                                                    " >> ${JobText_SaveDir}/${jobOptions}
         echo "ChargedDSelector.DDeltaMassMaxCut =  0.12;                                                    " >> ${JobText_SaveDir}/${jobOptions}
-        echo "LocalKaonSelector.useSimplePID=false;                                                         " >> ${JobText_SaveDir}/${jobOptions}
-        echo "LocalPionSelector.useSimplePID=false;                                                         " >> ${JobText_SaveDir}/${jobOptions}
+        echo "LocalKaonSelector.useSimplePID = false;                                                       " >> ${JobText_SaveDir}/${jobOptions}
+        echo "LocalPionSelector.useSimplePID = false;                                                       " >> ${JobText_SaveDir}/${jobOptions}
         echo "                                                                                              " >> ${JobText_SaveDir}/${jobOptions}
         echo "ApplicationMgr.DLLs += {\"PiD0DmAlg\"};                                                       " >> ${JobText_SaveDir}/${jobOptions}
         echo "ApplicationMgr.TopAlg +={ \"PiD0Dm\" };                                                       " >> ${JobText_SaveDir}/${jobOptions}
-        echo "PiD0Dm.AddModesD0 = {0,1,3,4};                                                                " >> ${JobText_SaveDir}/${jobOptions}
-        echo "PiD0Dm.AddModesDp = {200,201,202,203,204};                                                    " >> ${JobText_SaveDir}/${jobOptions}
+        echo "PiD0Dm.AddModesD0 = {0, 1, 3, 4};                                                             " >> ${JobText_SaveDir}/${jobOptions}
+        echo "PiD0Dm.AddModesDm = {200, 201, 202, 203, 204};                                                " >> ${JobText_SaveDir}/${jobOptions}
+        echo "PiD0Dm.sample_types = {\"signal\", \"side1_low\", \"side1_up\", \"side2_low\", \"side2_up\", \"side3_low\", \"side3_up\", \"side4_low\", \"side4_up\"};" >> ${JobText_SaveDir}/${jobOptions}
         echo "PiD0Dm.Ecms = ${CMS[$COUNT]};                                                                 " >> ${JobText_SaveDir}/${jobOptions}
+        echo "PiD0Dm.W_D0 = 0.024;                                                                          " >> ${JobText_SaveDir}/${jobOptions}
+        echo "PiD0Dm.W_Dm = 0.020;                                                                          " >> ${JobText_SaveDir}/${jobOptions}
         echo "                                                                                              " >> ${JobText_SaveDir}/${jobOptions}
         echo "// Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )                 " >> ${JobText_SaveDir}/${jobOptions}
         echo "MessageSvc.OutputLevel = 6;                                                                   " >> ${JobText_SaveDir}/${jobOptions}

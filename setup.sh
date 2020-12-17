@@ -82,7 +82,7 @@ case $option in
                     source setup.sh
                     cd /besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT
                     if [ ! -f "./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-04/cmt/setup.sh" ]; then
-                        echo "Please use ./build.sh 0.1.1 command to compile DDECAYALG analyzer and setup it..."
+                        echo "Please use ./build.sh 0.1.4 command to compile DDECAYALG analyzer and setup it..."
                     else
                         source ./Analysis/DTagTool/DTagTool-00-00-13/cmt/setup.sh
                         source ./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-04/cmt/setup.sh
@@ -103,7 +103,7 @@ case $option in
                 source setup.sh
                 cd /besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT
                 if [ ! -f "./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-04/cmt/setup.sh" ]; then
-                    echo "Please use ./build.sh 0.1.1 command to compile DDECAYALG analyzer and setup it..."
+                    echo "Please use ./build.sh 0.1.4 command to compile DDECAYALG analyzer and setup it..."
                 else 
                     source ./Analysis/DTagTool/DTagTool-00-00-13/cmt/setup.sh
                     source ./Analysis/Physics/PiD0DmAlg/PiD0DmAlg-00-00-04/cmt/setup.sh

@@ -20,5 +20,6 @@ echo "#!/usr/bin/env bash" > $FILENAME
 echo "cd /besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT/python" >> $FILENAME 
 for ECM in ${ECMS[@]}; do
     mkdir -p $ANA_PATH/$ECM
-    echo "./apply_cuts.py $SOURCE_PATH/$ECM/mc_${TYPE}_${ECM}.root $ANA_PATH/$ECM/mc_${TYPE}_${ECM}_signal.root signal" >> $FILENAME
+    echo "./apply_cuts.py $SOURCE_PATH/$ECM/mc_${TYPE}_${ECM}.root $ANA_PATH/$ECM/mc_${TYPE}_${ECM}_signal.root signal after_mass" >> $FILENAME
+    echo "./apply_cuts.py $SOURCE_PATH/$ECM/mc_${TYPE}_${ECM}.root $ANA_PATH/$ECM/mc_${TYPE}_${ECM}_signal_before_mass.root signal before_mass" >> $FILENAME
 done

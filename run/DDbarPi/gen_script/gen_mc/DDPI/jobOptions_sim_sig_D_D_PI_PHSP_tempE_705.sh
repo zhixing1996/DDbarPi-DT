@@ -46,12 +46,14 @@ do
     echo "KKMC.RadiationCorrection = 1;" >> $SIM_NAME
     echo "KKMC.TagISR = 1;" >> $SIM_NAME
     echo "KKMC.TagFSR = 1;" >> $SIM_NAME
+    echo "KKMC.ModeIndexExpXS = -2;" >> $SIM_NAME
+    echo "KKMC.IHVP = 1;" >> $SIM_NAME
 
     echo "" >> $SIM_NAME
     echo "//**************job options for EvtGen************************" >> $SIM_NAME
     echo "#include \"\$BESEVTGENROOT/share/BesEvtGen.txt\"" >> $SIM_NAME
     echo "EvtDecay.userDecayTableName = \"/besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT/run/DDbarPi/gen_script/gen_mc/decay/psi4260_D_D_PI_PHSP.dec\";" >> $SIM_NAME
-    echo "EvtDecay.PdtTableDir = \"/besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT/run/DDbarPi/gen_script/gen_mc/decay/pdt_703p01.table\";" >> $SIM_NAME
+    echo "EvtDecay.PdtTableDir = \"/besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT/run/DDbarPi/gen_script/gen_mc/decay/pdt_705.table\";" >> $SIM_NAME
     echo "EvtDecay.statDecays = true;" >> $SIM_NAME
     echo "EvtDecay.mDIY = 0;" >> $SIM_NAME
     echo "" >> $SIM_NAME

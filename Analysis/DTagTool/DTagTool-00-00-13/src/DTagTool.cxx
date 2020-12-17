@@ -169,7 +169,7 @@ bool DTagTool::compare(EvtRecDTagCol::iterator pair1_iter1,EvtRecDTagCol::iterat
 }
 
 
-bool DTagTool::compare(EvtRecDTagCol::iterator pair1_iter1,EvtRecDTagCol::iterator pair1_iter2,EvtRecDTagCol::iterator pair2_iter1,EvtRecDTagCol::iterator pair2_iter2, double mD0, double mDp, string smass){
+bool DTagTool::compare(EvtRecDTagCol::iterator pair1_iter1,EvtRecDTagCol::iterator pair1_iter2,EvtRecDTagCol::iterator pair2_iter1,EvtRecDTagCol::iterator pair2_iter2, double mD0, double mDm, string smass){
 
 	double value1=0;
 	double value2=0;
@@ -182,8 +182,8 @@ bool DTagTool::compare(EvtRecDTagCol::iterator pair1_iter1,EvtRecDTagCol::iterat
 		value2 = pow((*pair2_iter1)->deltaE()/m_tag1desigma,2)+pow((*pair2_iter2)->deltaE()/m_tag2desigma,2);
 	}
 	else if(smass=="inv"){
-		value1 = fabs((*pair1_iter1)->mass()-mD0) + fabs((*pair1_iter2)->mass()-mDp);
-		value2 = fabs((*pair2_iter1)->mass()-mD0) + fabs((*pair2_iter2)->mass()-mDp);
+		value1 = fabs((*pair1_iter1)->mass()-mD0) + fabs((*pair1_iter2)->mass()-mDm);
+		value2 = fabs((*pair2_iter1)->mass()-mD0) + fabs((*pair2_iter2)->mass()-mDm);
 	}
 
 	if( value1 <= value2)
@@ -329,9 +329,9 @@ bool DTagTool::findDTag(EvtRecDTag::DecayMode mode1, EvtRecDTag::DecayMode mode2
 }
 
 
-bool DTagTool::findDDTag(EvtRecDTag::DecayMode mode1, EvtRecDTag::DecayMode mode2, string smass){
+bool DTagTool::findDDTag(EvtRecDTag::DecayMode mode1, EvtRecDTag::DecayMode mode2, double MassD0Cand, double MassDmCand, string smass){
 
-		return findDDTag(static_cast<int>(mode1), static_cast<int>(mode2), smass);
+		return findDDTag(static_cast<int>(mode1), static_cast<int>(mode2), MassD0Cand, MassDmCand, smass);
 
 }
 
@@ -343,9 +343,9 @@ bool DTagTool::findDTag(EvtRecDTag::DecayMode mode1, int tagcharm1, EvtRecDTag::
 
 
 //find all the double tags
-bool DTagTool::findADTag(EvtRecDTag::DecayMode mode1, EvtRecDTag::DecayMode mode2){
+bool DTagTool::findADTag(EvtRecDTag::DecayMode mode1, EvtRecDTag::DecayMode mode2, double runNo, double evtNo){
 
-		return findADTag(static_cast<int>(mode1), static_cast<int>(mode2));
+		return findADTag(static_cast<int>(mode1), static_cast<int>(mode2), runNo, evtNo);
 
 }
 
@@ -556,7 +556,7 @@ bool DTagTool::findDTag(int mode1, int tagcharm1, int mode2, int tagcharm2, stri
 } //end of findDtag 
 
 
-bool DTagTool::findADTag(int mode1, int mode2){
+bool DTagTool::findADTag(int mode1, int mode2, double runNo, double evtNo){
 
 		int tagcharm1= (mode1<10 || mode1>=200)?+1:0;
 		int tagcharm2= (mode2<10 || mode2>=200)?-1:0;
@@ -567,18 +567,17 @@ bool DTagTool::findADTag(int mode1, int mode2){
 		}
 
 		//define D candidate mass
-		double mDcand=0;
-		if( mode1 < 200 && mode2 < 200)
-				mDcand = 1.8645;
-		else if ( mode1>=200 && mode1 < 400 && mode2>=200 && mode2 < 400)
-				mDcand = 1.8693;
-		else if ( mode1>=400 && mode1 < 1000 && mode2>=400 && mode2 < 1000)
-				mDcand = 1.9682;
-		else{
-				cout<<"double tag modes are not from same particle ! "<<endl;
-				return false;
-		}
-
+		// double mDcand=0;
+		// if( mode1 < 200 && mode2 < 200)
+		// 		mDcand = 1.8645;
+		// else if ( mode1>=200 && mode1 < 400 && mode2>=200 && mode2 < 400)
+		// 		mDcand = 1.8693;
+		// else if ( mode1>=400 && mode1 < 1000 && mode2>=400 && mode2 < 1000)
+		// 		mDcand = 1.9682;
+		// else{
+		// 		cout<<"double tag modes are not from same particle ! "<<endl;
+		// 		return false;
+		// }
 
 		vector<int> igood1, igood2;
 		igood1.clear(),igood2.clear();
@@ -618,10 +617,14 @@ bool DTagTool::findADTag(int mode1, int mode2){
 		}
 
 		//look for the best pair of double-tagged event
+        if(igood1.size()<1 || igood2.size()<1)
+		    return false;
 
 		bool isDtcand=false;
 		EvtRecDTagCol::iterator iter_i, iter_j;
 
+        // m_viterdtag1.clear();
+        // m_viterdtag2.clear();
 		for(int i=0; i<igood1.size(); i++){
 
 				iter_i=m_iterbegin+igood1[i];
@@ -632,7 +635,6 @@ bool DTagTool::findADTag(int mode1, int mode2){
 						int charm_j=(*iter_j)->charm();
 						if( charm_i*charm_j>0 || igood2[j] == igood1[i] ) continue;
 						if(shareTracks(iter_i,iter_j)) continue;
-
 						m_viterdtag1.push_back(m_iterbegin+igood1[i]);
 						m_viterdtag2.push_back(m_iterbegin+igood2[j]);
 
@@ -640,9 +642,22 @@ bool DTagTool::findADTag(int mode1, int mode2){
 				} //end of j loop
 		} //end of i loop
 
-		if(m_viterdtag1.size()>0){
+		if (m_viterdtag1.size()>0) {
 				isDtcand=true;
 		}
+
+        // if (runNo == -36192 && evtNo == 2 && mode1 == 3 && mode2 == 201) { 
+        //     std::cout << "igood1 size: " << igood1.size() << ", igood2 size: " << igood2.size() << std::endl;
+        //     std::cout << "m_viterdtag1 size: " << m_viterdtag1.size() << ", m_viterdtag2 size: " << m_viterdtag2.size() << std::endl;
+        // }
+        // if (runNo == -36164 && evtNo == 2 && mode1 == 1 && mode2 == 201) { 
+        //     std::cout << "igood1 size: " << igood1.size() << ", igood2 size: " << igood2.size() << std::endl;
+        //     std::cout << "m_viterdtag1 size: " << m_viterdtag1.size() << ", m_viterdtag2 size: " << m_viterdtag2.size() << std::endl;
+        // }
+        // if (runNo == -36138 && evtNo == 1 && mode1 == 1 && mode2 == 201) { 
+        //     std::cout << "igood1 size: " << igood1.size() << ", igood2 size: " << igood2.size() << std::endl;
+        //     std::cout << "m_viterdtag1 size: " << m_viterdtag1.size() << ", m_viterdtag2 size: " << m_viterdtag2.size() << std::endl;
+        // }
 
 		return isDtcand;
 }
@@ -730,7 +745,7 @@ bool DTagTool::findADTag(int mode1, int tagcharm1, int mode2, int tagcharm2){
 } //end of findADtag 
 
 
-bool DTagTool::findDDTag(int mode1, int mode2, string smass){
+bool DTagTool::findDDTag(int mode1, int mode2, double MassD0Cand, double MassDmCand, string smass){
 
 	int tagcharm1= (mode1<10 || mode1>=200)?+1:0;
 	int tagcharm2= (mode2<10 || mode2>=200)?-1:0;
@@ -741,8 +756,8 @@ bool DTagTool::findDDTag(int mode1, int mode2, string smass){
 	}
 
 	//define D candidate mass
-	double mD0cand = 1.86483;
-	double mDpcand = 1.86965;
+	double mD0cand = MassD0Cand;
+	double mDmcand = MassDmCand;
 
 
 	vector<int> igood1, igood2;
@@ -790,7 +805,8 @@ bool DTagTool::findDDTag(int mode1, int mode2, string smass){
 	int index_i=0, index_j=0;
 
 	EvtRecDTagCol::iterator iter_i, iter_j;
-	int count=0;
+	n_combination=0;
+    INDEX = 0;
 	for(int i=0; i<igood1.size(); i++){
 
 		iter_i=m_iterbegin+igood1[i];
@@ -803,16 +819,18 @@ bool DTagTool::findDDTag(int mode1, int mode2, string smass){
 			if( charm_i*charm_j>0 || igood2[j] == igood1[i] ) continue;
 
 			if(shareTracks(iter_i,iter_j)) continue;
-			count++;
-			if(count==1){
+			n_combination++;
+			if(n_combination==1){
 				m_iterdtag1=iter_i;
 				m_iterdtag2=iter_j;
+                INDEX = n_combination;
 			}
 
-			if( compare(iter_i,iter_j,m_iterdtag1,m_iterdtag2,mD0cand,mDpcand,smass) ){
+			if( compare(iter_i,iter_j,m_iterdtag1,m_iterdtag2,mD0cand,mDmcand,smass) ){
 				m_iterdtag1=iter_i;
 				m_iterdtag2=iter_j;
 				isDtcand = true;
+                INDEX = n_combination;
 			}
 
 		} //end of j loop

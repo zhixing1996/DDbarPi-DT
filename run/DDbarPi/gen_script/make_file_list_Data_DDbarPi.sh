@@ -9,7 +9,7 @@ fi
 
 if [ "$BOSS" = "705" ]; then
     # ECMS=("4612" "4620" "4640" "4660" "4680" "4700")
-    ECMS=("4680")
+    ECMS=("4680" "4700")
     PATH="/besfs4/offline/data/705-1/xyz/round13/"
 fi
 

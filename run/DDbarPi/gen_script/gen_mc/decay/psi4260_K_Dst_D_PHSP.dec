@@ -1,0 +1,12 @@
+Decay  psi(4260)
+1.00  K+   D_s-       D*0  PHSP;
+1.00  K-   D_s+  anti-D*0  PHSP;
+1.00  K+   D_s*-       D0  PHSP;
+1.00  K-   D_s*+  anti-D0  PHSP;
+1.00  K_S0 D_s*-       D+  PHSP;
+1.00  K_S0 D_s*+       D-  PHSP;
+1.00  K_S0 D_s-       D*+  PHSP;
+1.00  K_S0 D_s+       D*-  PHSP;
+Enddecay
+
+End

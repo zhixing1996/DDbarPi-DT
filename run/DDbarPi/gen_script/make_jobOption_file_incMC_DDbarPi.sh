@@ -30,13 +30,39 @@ for ECM in ${ECMS[@]}; do
         echo "#include \"\$ROOTIOROOT/share/jobOptions_ReadRec.txt\"                                            "  > ${JobText_SaveDir}/${jobOptions}
         echo "#include \"\$MAGNETICFIELDROOT/share/MagneticField.txt\"                                          " >> ${JobText_SaveDir}/${jobOptions}
         echo "#include \"\$DTAGALGROOT/share/jobOptions_dTag.txt\"                                              " >> ${JobText_SaveDir}/${jobOptions}
-        echo "#include \"\$DDECAYALGROOT/share/jobOptions_DDecay.txt\"                                          " >> ${JobText_SaveDir}/${jobOptions}
+        echo "#include \"\$SIMPLEPIDSVCROOT/share/jobOptions_SimplePIDSvc.txt\"                                 " >> ${JobText_SaveDir}/${jobOptions}
+        echo "#include \"\$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt\"                                     " >> ${JobText_SaveDir}/${jobOptions}
         if [ "$BOSS" = "705" ]; then
             echo "#include \"\$MEASUREDECMSSVCROOT/share/anaOptions.txt\"                                       " >> ${JobText_SaveDir}/${jobOptions}
         fi
         echo "#include \"/besfs/groups/cal/dedx/\$USER/bes/DDbarPi-DT/run/DDbarPi/samples/mc/$TYPE/$ECM/$file_list\" " >> ${JobText_SaveDir}/${jobOptions}
-        echo "DDecay.Ecms = ${CMS[$COUNT]};                                                                     " >> ${JobText_SaveDir}/${jobOptions}
-        echo "DDecay.type = \"incMC\";                                                                          " >> ${JobText_SaveDir}/${jobOptions}
+        echo "                                                                                                  " >> ${JobText_SaveDir}/${jobOptions}
+        echo "NeutralDReconstruction.ReadBeamEFromDB = false;                                                   " >> ${JobText_SaveDir}/${jobOptions}
+        echo "NeutralDReconstruction.UseCalibBeamE = false;                                                     " >> ${JobText_SaveDir}/${jobOptions}
+        echo "NeutralDReconstruction.BeamE = 2.09;                                                              " >> ${JobText_SaveDir}/${jobOptions}
+        echo "NeutralDSelector.UseMbcCuts = false;                                                              " >> ${JobText_SaveDir}/${jobOptions}
+        echo "NeutralDSelector.UseDeltaECuts = false;                                                           " >> ${JobText_SaveDir}/${jobOptions}
+        echo "NeutralDSelector.UseDeltaMassCuts = true;                                                         " >> ${JobText_SaveDir}/${jobOptions}
+        echo "NeutralDSelector.DDeltaMassMinCut = -0.12;                                                        " >> ${JobText_SaveDir}/${jobOptions}
+        echo "NeutralDSelector.DDeltaMassMaxCut =  0.12;                                                        " >> ${JobText_SaveDir}/${jobOptions}
+        echo "ChargedDReconstruction.ReadBeamEFromDB = false;                                                   " >> ${JobText_SaveDir}/${jobOptions}
+        echo "ChargedDReconstruction.UseCalibBeamE = false;                                                     " >> ${JobText_SaveDir}/${jobOptions}
+        echo "ChargedDSelector.UseMbcCuts = false;                                                              " >> ${JobText_SaveDir}/${jobOptions}
+        echo "ChargedDSelector.UseDeltaECuts = false;                                                           " >> ${JobText_SaveDir}/${jobOptions}
+        echo "ChargedDSelector.UseDeltaMassCuts = true;                                                         " >> ${JobText_SaveDir}/${jobOptions}
+        echo "ChargedDSelector.DDeltaMassMinCut = -0.12;                                                        " >> ${JobText_SaveDir}/${jobOptions}
+        echo "ChargedDSelector.DDeltaMassMaxCut =  0.12;                                                        " >> ${JobText_SaveDir}/${jobOptions}
+        echo "LocalKaonSelector.useSimplePID = false;                                                           " >> ${JobText_SaveDir}/${jobOptions}
+        echo "LocalPionSelector.useSimplePID = false;                                                           " >> ${JobText_SaveDir}/${jobOptions}
+        echo "                                                                                                  " >> ${JobText_SaveDir}/${jobOptions}
+        echo "ApplicationMgr.DLLs += {\"PiD0DmAlg\"};                                                           " >> ${JobText_SaveDir}/${jobOptions}
+        echo "ApplicationMgr.TopAlg +={ \"PiD0Dm\" };                                                           " >> ${JobText_SaveDir}/${jobOptions}
+        echo "PiD0Dm.AddModesD0 = {0, 1, 3, 4};                                                                 " >> ${JobText_SaveDir}/${jobOptions}
+        echo "PiD0Dm.AddModesDm = {200, 201, 202, 203, 204};                                                    " >> ${JobText_SaveDir}/${jobOptions}
+        echo "PiD0Dm.sample_types = {\"signal\", \"side1_low\", \"side1_up\", \"side2_low\", \"side2_up\", \"side3_low\", \"side3_up\", \"side4_low\", \"side4_up\"};" >> ${JobText_SaveDir}/${jobOptions}
+        echo "PiD0Dm.Ecms = ${CMS[$COUNT]};                                                                     " >> ${JobText_SaveDir}/${jobOptions}
+        echo "PiD0Dm.W_D0 = 0.024;                                                                              " >> ${JobText_SaveDir}/${jobOptions}
+        echo "PiD0Dm.W_Dm = 0.020;                                                                              " >> ${JobText_SaveDir}/${jobOptions}
         echo "                                                                                                  " >> ${JobText_SaveDir}/${jobOptions}
         echo "// Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )                     " >> ${JobText_SaveDir}/${jobOptions}
         echo "MessageSvc.OutputLevel = 6;                                                                       " >> ${JobText_SaveDir}/${jobOptions}
