@@ -102,6 +102,9 @@ StatusCode PiD0Dm::initialize() {
                     status = m_tuple_signal->addItem("ctau_svf_Dm",                      m_ctau_svf_Dm_signal);
                     status = m_tuple_signal->addItem("L_svf_Dm",                         m_L_svf_Dm_signal);
                     status = m_tuple_signal->addItem("Lerr_svf_Dm",                      m_Lerr_svf_Dm_signal);
+                    status = m_tuple_signal->addItem("vtx",                              3, m_vtx_signal);
+                    status = m_tuple_signal->addItem("cp_D0",                            3, m_cp_D0_signal);
+                    status = m_tuple_signal->addItem("cp_Dm",                            3, m_cp_Dm_signal);
                 }
                 else {
                     log << MSG::ERROR << "Cannot book N-tuple:" << long(m_tuple_signal) << endmsg;
@@ -181,6 +184,9 @@ StatusCode PiD0Dm::initialize() {
                     status = m_tuple_side1_low->addItem("ctau_svf_Dm",                      m_ctau_svf_Dm_side1_low);
                     status = m_tuple_side1_low->addItem("L_svf_Dm",                         m_L_svf_Dm_side1_low);
                     status = m_tuple_side1_low->addItem("Lerr_svf_Dm",                      m_Lerr_svf_Dm_side1_low);
+                    status = m_tuple_side1_low->addItem("vtx",                              3, m_vtx_side1_low);
+                    status = m_tuple_side1_low->addItem("cp_D0",                            3, m_cp_D0_side1_low);
+                    status = m_tuple_side1_low->addItem("cp_Dm",                            3, m_cp_Dm_side1_low);
                 }
                 else {
                     log << MSG::ERROR << "Cannot book N-tuple:" << long(m_tuple_side1_low) << endmsg;
@@ -260,6 +266,9 @@ StatusCode PiD0Dm::initialize() {
                     status = m_tuple_side1_up->addItem("ctau_svf_Dm",                      m_ctau_svf_Dm_side1_up);
                     status = m_tuple_side1_up->addItem("L_svf_Dm",                         m_L_svf_Dm_side1_up);
                     status = m_tuple_side1_up->addItem("Lerr_svf_Dm",                      m_Lerr_svf_Dm_side1_up);
+                    status = m_tuple_side1_up->addItem("vtx",                              3, m_vtx_side1_up);
+                    status = m_tuple_side1_up->addItem("cp_D0",                            3, m_cp_D0_side1_up);
+                    status = m_tuple_side1_up->addItem("cp_Dm",                            3, m_cp_Dm_side1_up);
                 }
                 else {
                     log << MSG::ERROR << "Cannot book N-tuple:" << long(m_tuple_side1_up) << endmsg;
@@ -339,6 +348,9 @@ StatusCode PiD0Dm::initialize() {
                     status = m_tuple_side2_low->addItem("ctau_svf_Dm",                      m_ctau_svf_Dm_side2_low);
                     status = m_tuple_side2_low->addItem("L_svf_Dm",                         m_L_svf_Dm_side2_low);
                     status = m_tuple_side2_low->addItem("Lerr_svf_Dm",                      m_Lerr_svf_Dm_side2_low);
+                    status = m_tuple_side2_low->addItem("vtx",                              3, m_vtx_side2_low);
+                    status = m_tuple_side2_low->addItem("cp_D0",                            3, m_cp_D0_side2_low);
+                    status = m_tuple_side2_low->addItem("cp_Dm",                            3, m_cp_Dm_side2_low);
                 }
                 else {
                     log << MSG::ERROR << "Cannot book N-tuple:" << long(m_tuple_side2_low) << endmsg;
@@ -418,6 +430,9 @@ StatusCode PiD0Dm::initialize() {
                     status = m_tuple_side2_up->addItem("ctau_svf_Dm",                      m_ctau_svf_Dm_side2_up);
                     status = m_tuple_side2_up->addItem("L_svf_Dm",                         m_L_svf_Dm_side2_up);
                     status = m_tuple_side2_up->addItem("Lerr_svf_Dm",                      m_Lerr_svf_Dm_side2_up);
+                    status = m_tuple_side2_up->addItem("vtx",                              3, m_vtx_side2_up);
+                    status = m_tuple_side2_up->addItem("cp_D0",                            3, m_cp_D0_side2_up);
+                    status = m_tuple_side2_up->addItem("cp_Dm",                            3, m_cp_Dm_side2_up);
                 }
                 else {
                     log << MSG::ERROR << "Cannot book N-tuple:" << long(m_tuple_side2_up) << endmsg;
@@ -497,6 +512,9 @@ StatusCode PiD0Dm::initialize() {
                     status = m_tuple_side3_low->addItem("ctau_svf_Dm",                      m_ctau_svf_Dm_side3_low);
                     status = m_tuple_side3_low->addItem("L_svf_Dm",                         m_L_svf_Dm_side3_low);
                     status = m_tuple_side3_low->addItem("Lerr_svf_Dm",                      m_Lerr_svf_Dm_side3_low);
+                    status = m_tuple_side3_low->addItem("vtx",                              3, m_vtx_side3_low);
+                    status = m_tuple_side3_low->addItem("cp_D0",                            3, m_cp_D0_side3_low);
+                    status = m_tuple_side3_low->addItem("cp_Dm",                            3, m_cp_Dm_side3_low);
                 }
                 else {
                     log << MSG::ERROR << "Cannot book N-tuple:" << long(m_tuple_side3_low) << endmsg;
@@ -576,6 +594,9 @@ StatusCode PiD0Dm::initialize() {
                     status = m_tuple_side3_up->addItem("ctau_svf_Dm",                      m_ctau_svf_Dm_side3_up);
                     status = m_tuple_side3_up->addItem("L_svf_Dm",                         m_L_svf_Dm_side3_up);
                     status = m_tuple_side3_up->addItem("Lerr_svf_Dm",                      m_Lerr_svf_Dm_side3_up);
+                    status = m_tuple_side3_up->addItem("vtx",                              3, m_vtx_side3_up);
+                    status = m_tuple_side3_up->addItem("cp_D0",                            3, m_cp_D0_side3_up);
+                    status = m_tuple_side3_up->addItem("cp_Dm",                            3, m_cp_Dm_side3_up);
                 }
                 else {
                     log << MSG::ERROR << "Cannot book N-tuple:" << long(m_tuple_side3_up) << endmsg;
@@ -655,6 +676,9 @@ StatusCode PiD0Dm::initialize() {
                     status = m_tuple_side4_low->addItem("ctau_svf_Dm",                      m_ctau_svf_Dm_side4_low);
                     status = m_tuple_side4_low->addItem("L_svf_Dm",                         m_L_svf_Dm_side4_low);
                     status = m_tuple_side4_low->addItem("Lerr_svf_Dm",                      m_Lerr_svf_Dm_side4_low);
+                    status = m_tuple_side4_low->addItem("vtx",                              3, m_vtx_side4_low);
+                    status = m_tuple_side4_low->addItem("cp_D0",                            3, m_cp_D0_side4_low);
+                    status = m_tuple_side4_low->addItem("cp_Dm",                            3, m_cp_Dm_side4_low);
                 }
                 else {
                     log << MSG::ERROR << "Cannot book N-tuple:" << long(m_tuple_side4_low) << endmsg;
@@ -734,6 +758,9 @@ StatusCode PiD0Dm::initialize() {
                     status = m_tuple_side4_up->addItem("ctau_svf_Dm",                      m_ctau_svf_Dm_side4_up);
                     status = m_tuple_side4_up->addItem("L_svf_Dm",                         m_L_svf_Dm_side4_up);
                     status = m_tuple_side4_up->addItem("Lerr_svf_Dm",                      m_Lerr_svf_Dm_side4_up);
+                    status = m_tuple_side4_up->addItem("vtx",                              3, m_vtx_side4_up);
+                    status = m_tuple_side4_up->addItem("cp_D0",                            3, m_cp_D0_side4_up);
+                    status = m_tuple_side4_up->addItem("cp_Dm",                            3, m_cp_Dm_side4_up);
                 }
                 else {
                     log << MSG::ERROR << "Cannot book N-tuple:" << long(m_tuple_side4_up) << endmsg;
@@ -1005,11 +1032,6 @@ StatusCode PiD0Dm::execute() {
                         }
                         n_D0trks++;
                     }
-                    bool is_OK_D0 = fitSecondVertex(vwtrkpara_D0);
-                    chisq_svf_D0 = matrix_svf[0];
-                    ctau_svf_D0 = matrix_svf[1];
-                    L_svf_D0 = matrix_svf[2];
-                    Lerr_svf_D0 = matrix_svf[3];
                     VWTrkPara vwtrkpara_Dm;
                     vwtrkpara_Dm.clear();
                     n_Dmtrks = 0;
@@ -1069,17 +1091,24 @@ StatusCode PiD0Dm::execute() {
                         }
                         n_Dmtrks++;
                     }
-                    bool is_OK_Dm = fitSecondVertex(vwtrkpara_Dm);
-                    chisq_svf_Dm = matrix_svf[0];
-                    ctau_svf_Dm = matrix_svf[1];
-                    L_svf_Dm = matrix_svf[2];
-                    Lerr_svf_Dm = matrix_svf[3];
                     RecMdcKalTrack *mdcPip = OtherTracks1[pi_id]->mdcKalTrack();
                     mdcPip->setPidType(RecMdcKalTrack::pion);
                     vwtrkpara_charge.push_back(WTrackParameter(mpi, mdcPip->getZHelixK(), mdcPip->getZErrorK()));
+                    VWTrkPara vwtrkpara_pi;
+                    vwtrkpara_pi.clear();
+                    vwtrkpara_pi.push_back(WTrackParameter(mpi, mdcPip->getZHelixK(), mdcPip->getZErrorK()));
                     chisq_vf = fitVertex(vwtrkpara_charge, birth);
                     if (chisq_vf > 999999) continue;
                     if (m_debug) std::cout << itag << ": after Vtx fit" << std::endl;
+                    bool is_OK_svf = fitSecondVertex(vwtrkpara_D0, vwtrkpara_Dm, vwtrkpara_pi);
+                    chisq_svf_D0 = matrix_svf_D0[0];
+                    ctau_svf_D0 = matrix_svf_D0[1];
+                    L_svf_D0 = matrix_svf_D0[2];
+                    Lerr_svf_D0 = matrix_svf_D0[3];
+                    chisq_svf_Dm = matrix_svf_Dm[0];
+                    ctau_svf_Dm = matrix_svf_Dm[1];
+                    L_svf_Dm = matrix_svf_Dm[2];
+                    Lerr_svf_Dm = matrix_svf_Dm[3];
                     Ncut4++;
                     // Begain to fill the Kinematic Fitter
                     kmfit->init();
@@ -1541,6 +1570,10 @@ void PiD0Dm::recordVariables(std::string sample_type) {
         m_L_svf_Dm_signal = L_svf_Dm;
         m_Lerr_svf_Dm_signal = Lerr_svf_Dm;
 
+        for (int i = 0; i < 3; i++) m_vtx_signal[i] = vtx[i];
+        for (int i = 0; i < 3; i++) m_cp_D0_signal[i] = cp_D0[i];
+        for (int i = 0; i < 3; i++) m_cp_Dm_signal[i] = cp_Dm[i];
+
         if (sample_type == "signal") m_tuple_signal->write();
     }
     if (sample_type == "side1_low") {
@@ -1632,6 +1665,10 @@ void PiD0Dm::recordVariables(std::string sample_type) {
         m_ctau_svf_Dm_side1_low = ctau_svf_Dm;
         m_L_svf_Dm_side1_low = L_svf_Dm;
         m_Lerr_svf_Dm_side1_low = Lerr_svf_Dm;
+
+        for (int i = 0; i < 3; i++) m_vtx_side1_low[i] = vtx[i];
+        for (int i = 0; i < 3; i++) m_cp_D0_side1_low[i] = cp_D0[i];
+        for (int i = 0; i < 3; i++) m_cp_Dm_side1_low[i] = cp_Dm[i];
 
         if (sample_type == "side1_low") m_tuple_side1_low->write();
     }
@@ -1725,6 +1762,10 @@ void PiD0Dm::recordVariables(std::string sample_type) {
         m_L_svf_Dm_side1_up = L_svf_Dm;
         m_Lerr_svf_Dm_side1_up = Lerr_svf_Dm;
 
+        for (int i = 0; i < 3; i++) m_vtx_side1_up[i] = vtx[i];
+        for (int i = 0; i < 3; i++) m_cp_D0_side1_up[i] = cp_D0[i];
+        for (int i = 0; i < 3; i++) m_cp_Dm_side1_up[i] = cp_Dm[i];
+
         if (sample_type == "side1_up") m_tuple_side1_up->write();
     }
     if (sample_type == "side2_low") {
@@ -1816,6 +1857,10 @@ void PiD0Dm::recordVariables(std::string sample_type) {
         m_ctau_svf_Dm_side2_low = ctau_svf_Dm;
         m_L_svf_Dm_side2_low = L_svf_Dm;
         m_Lerr_svf_Dm_side2_low = Lerr_svf_Dm;
+
+        for (int i = 0; i < 3; i++) m_vtx_side2_low[i] = vtx[i];
+        for (int i = 0; i < 3; i++) m_cp_D0_side2_low[i] = cp_D0[i];
+        for (int i = 0; i < 3; i++) m_cp_Dm_side2_low[i] = cp_Dm[i];
 
         if (sample_type == "side2_low") m_tuple_side2_low->write();
     }
@@ -1909,6 +1954,10 @@ void PiD0Dm::recordVariables(std::string sample_type) {
         m_L_svf_Dm_side2_up = L_svf_Dm;
         m_Lerr_svf_Dm_side2_up = Lerr_svf_Dm;
 
+        for (int i = 0; i < 3; i++) m_vtx_side2_up[i] = vtx[i];
+        for (int i = 0; i < 3; i++) m_cp_D0_side2_up[i] = cp_D0[i];
+        for (int i = 0; i < 3; i++) m_cp_Dm_side2_up[i] = cp_Dm[i];
+
         if (sample_type == "side2_up") m_tuple_side2_up->write();
     }
     if (sample_type == "side3_low") {
@@ -2000,6 +2049,10 @@ void PiD0Dm::recordVariables(std::string sample_type) {
         m_ctau_svf_Dm_side3_low = ctau_svf_Dm;
         m_L_svf_Dm_side3_low = L_svf_Dm;
         m_Lerr_svf_Dm_side3_low = Lerr_svf_Dm;
+
+        for (int i = 0; i < 3; i++) m_vtx_side3_low[i] = vtx[i];
+        for (int i = 0; i < 3; i++) m_cp_D0_side3_low[i] = cp_D0[i];
+        for (int i = 0; i < 3; i++) m_cp_Dm_side3_low[i] = cp_Dm[i];
 
         if (sample_type == "side3_low") m_tuple_side3_low->write();
     }
@@ -2093,6 +2146,10 @@ void PiD0Dm::recordVariables(std::string sample_type) {
         m_L_svf_Dm_side3_up = L_svf_Dm;
         m_Lerr_svf_Dm_side3_up = Lerr_svf_Dm;
 
+        for (int i = 0; i < 3; i++) m_vtx_side3_up[i] = vtx[i];
+        for (int i = 0; i < 3; i++) m_cp_D0_side3_up[i] = cp_D0[i];
+        for (int i = 0; i < 3; i++) m_cp_Dm_side3_up[i] = cp_Dm[i];
+
         if (sample_type == "side3_up") m_tuple_side3_up->write();
     }
     if (sample_type == "side4_low") {
@@ -2185,6 +2242,10 @@ void PiD0Dm::recordVariables(std::string sample_type) {
         m_L_svf_Dm_side4_low = L_svf_Dm;
         m_Lerr_svf_Dm_side4_low = Lerr_svf_Dm;
 
+        for (int i = 0; i < 3; i++) m_vtx_side4_low[i] = vtx[i];
+        for (int i = 0; i < 3; i++) m_cp_D0_side4_low[i] = cp_D0[i];
+        for (int i = 0; i < 3; i++) m_cp_Dm_side4_low[i] = cp_Dm[i];
+
         if (sample_type == "side4_low") m_tuple_side4_low->write();
     }
     if (sample_type == "side4_up") {
@@ -2276,6 +2337,10 @@ void PiD0Dm::recordVariables(std::string sample_type) {
         m_ctau_svf_Dm_side4_up = ctau_svf_Dm;
         m_L_svf_Dm_side4_up = L_svf_Dm;
         m_Lerr_svf_Dm_side4_up = Lerr_svf_Dm;
+
+        for (int i = 0; i < 3; i++) m_vtx_side4_up[i] = vtx[i];
+        for (int i = 0; i < 3; i++) m_cp_D0_side4_up[i] = cp_D0[i];
+        for (int i = 0; i < 3; i++) m_cp_Dm_side4_up[i] = cp_Dm[i];
 
         if (sample_type == "side4_up") m_tuple_side4_up->write();
     }
@@ -2374,29 +2439,52 @@ int PiD0Dm::MatchMC(HepLorentzVector &p4, std::string MODE) {
     return 0;
 }
 
-bool PiD0Dm::fitSecondVertex(VWTrkPara &vwtrkpara) {
-    matrix_svf[0] = 999.;
-    matrix_svf[1] = 999.;
-    matrix_svf[2] = 999.;
-    matrix_svf[3] = 999.;
-    Hep3Vector ip(0, 0, 0);
-    HepSymMatrix ipEx(3, 0);
-    IVertexDbSvc* vtxsvc;
-    Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
-    if (vtxsvc->isVertexValid()) {
-        double* dbv = vtxsvc->PrimaryVertex();
-        double* vv = vtxsvc->SigmaPrimaryVertex();
-        ip.setX(dbv[0]);
-        ip.setY(dbv[1]);
-        ip.setZ(dbv[2]);
-        ipEx[0][0] = vv[0] * vv[0];
-        ipEx[1][1] = vv[1] * vv[1];
-        ipEx[2][2] = vv[2] * vv[2];
-    }
-    else return false;
-    VertexParameter bs;
-    bs.setVx(ip);
-    bs.setEvx(ipEx);
+bool PiD0Dm::fitSecondVertex(VWTrkPara &vwtrkpara_D0, VWTrkPara &vwtrkpara_Dm, VWTrkPara &vwtrkpara_pi) {
+    // get D0 virtual track
+    HepPoint3D vx_D0(0., 0., 0.);
+    HepSymMatrix Evx_D0(3, 0);
+    double bx_D0 = 1E+6;
+    double by_D0 = 1E+6;
+    double bz_D0 = 1E+6;
+    Evx_D0[0][0] = bx_D0 * bx_D0;
+    Evx_D0[1][1] = by_D0 * by_D0;
+    Evx_D0[2][2] = bz_D0 * bz_D0;
+    VertexParameter vxpar_D0;
+    vxpar_D0.setVx(vx_D0);
+    vxpar_D0.setEvx(Evx_D0);
+    VertexFit *vtxfit_D0 = VertexFit::instance();
+    vtxfit_D0->init();
+    for (int i = 0; i < vwtrkpara_D0.size(); i++) vtxfit_D0->AddTrack(i, vwtrkpara_D0[i]);
+    Vint trkId_D0(vwtrkpara_D0.size(), 0);
+    for (int i = 0; i < vwtrkpara_D0.size(); i++) trkId_D0[i] = i;
+    vtxfit_D0->AddVertex(0, vxpar_D0, trkId_D0);
+    if (!(vtxfit_D0->Fit(0))) return false;
+    vtxfit_D0->Swim(0);
+    vtxfit_D0->BuildVirtualParticle(0);
+    WTrackParameter wD0 = vtxfit_D0->wVirtualTrack(0);
+    // get D- virtual track
+    HepPoint3D vx_Dm(0., 0., 0.);
+    HepSymMatrix Evx_Dm(3, 0);
+    double bx_Dm = 1E+6;
+    double by_Dm = 1E+6;
+    double bz_Dm = 1E+6;
+    Evx_Dm[0][0] = bx_Dm * bx_Dm;
+    Evx_Dm[1][1] = by_Dm * by_Dm;
+    Evx_Dm[2][2] = bz_Dm * bz_Dm;
+    VertexParameter vxpar_Dm;
+    vxpar_Dm.setVx(vx_Dm);
+    vxpar_Dm.setEvx(Evx_Dm);
+    VertexFit *vtxfit_Dm = VertexFit::instance();
+    vtxfit_Dm->init();
+    for (int i = 0; i < vwtrkpara_Dm.size(); i++) vtxfit_Dm->AddTrack(i, vwtrkpara_Dm[i]);
+    Vint trkId_Dm(vwtrkpara_Dm.size(), 0);
+    for (int i = 0; i < vwtrkpara_Dm.size(); i++) trkId_Dm[i] = i;
+    vtxfit_Dm->AddVertex(0, vxpar_Dm, trkId_Dm);
+    if (!(vtxfit_Dm->Fit(0))) return false;
+    vtxfit_Dm->Swim(0);
+    vtxfit_Dm->BuildVirtualParticle(0);
+    WTrackParameter wDm = vtxfit_Dm->wVirtualTrack(0);
+    // get renewed vertex info
     HepPoint3D vx(0., 0., 0.);
     HepSymMatrix Evx(3, 0);
     double bx = 1E+6;
@@ -2405,29 +2493,60 @@ bool PiD0Dm::fitSecondVertex(VWTrkPara &vwtrkpara) {
     Evx[0][0] = bx * bx;
     Evx[1][1] = by * by;
     Evx[2][2] = bz * bz;
-    // vertex fit
     VertexParameter vxpar;
     vxpar.setVx(vx);
     vxpar.setEvx(Evx);
     VertexFit *vtxfit = VertexFit::instance();
     vtxfit->init();
-    for (int i = 0; i < vwtrkpara.size(); i++) vtxfit->AddTrack(i, vwtrkpara[i]);
-    Vint trkId(vwtrkpara.size(), 0);
-    for (int i = 0; i < vwtrkpara.size(); i++) trkId[i] = i;
+    vtxfit->AddTrack(0, wD0);
+    vtxfit->AddTrack(1, wDm);
+    vtxfit->AddTrack(2, vwtrkpara_pi[0]);
+    Vint trkId(3, 0);
+    for (int i = 0; i < 3; i++) trkId[i] = i;
     vtxfit->AddVertex(0, vxpar, trkId);
     if (!(vtxfit->Fit(0))) return false;
     vtxfit->Swim(0);
     vtxfit->BuildVirtualParticle(0);
-    // second vertex fit
-    SecondVertexFit *svtxfit = SecondVertexFit::instance();
-    svtxfit->init();
-    svtxfit->setPrimaryVertex(bs);
-    svtxfit->AddTrack(0, vtxfit->wVirtualTrack(0));
-    svtxfit->setVpar(vtxfit->vpar(0));
-    if (!svtxfit->Fit()) return false;
-    matrix_svf[0] = svtxfit->chisq();
-    matrix_svf[1] = svtxfit->ctau();
-    matrix_svf[2] = svtxfit->decayLength();
-    matrix_svf[3] = svtxfit->decayLengthError();
+    WTrackParameter wvtx = vtxfit->wVirtualTrack(0);
+    Hep3Vector ip = wvtx.x();
+    HepSymMatrix ipEx = wvtx.Ex();
+    for (int i = 0; i < 3; i++) {vtx[i] = ip[i];}
+    VertexParameter bs;
+    bs.setVx(ip);
+    bs.setEvx(ipEx);
+    // second vertex fit for D0
+    matrix_svf_D0[0] = 999.;
+    matrix_svf_D0[1] = 999.;
+    matrix_svf_D0[2] = 999.;
+    matrix_svf_D0[3] = 999.;
+    SecondVertexFit *svtxfit_D0 = SecondVertexFit::instance();
+    svtxfit_D0->init();
+    svtxfit_D0->setPrimaryVertex(bs);
+    svtxfit_D0->AddTrack(0, wD0);
+    svtxfit_D0->setVpar(vtxfit_D0->vpar(0));
+    if (!svtxfit_D0->Fit()) return false;
+    HepPoint3D sv_D0 = svtxfit_D0->crossPoint();
+    for (int i = 0; i < 3; i++) {cp_D0[i] = sv_D0[i];}
+    matrix_svf_D0[0] = svtxfit_D0->chisq();
+    matrix_svf_D0[1] = svtxfit_D0->ctau();
+    matrix_svf_D0[2] = svtxfit_D0->decayLength();
+    matrix_svf_D0[3] = svtxfit_D0->decayLengthError();
+    // second vertex fit for D-
+    matrix_svf_Dm[0] = 999.;
+    matrix_svf_Dm[1] = 999.;
+    matrix_svf_Dm[2] = 999.;
+    matrix_svf_Dm[3] = 999.;
+    SecondVertexFit *svtxfit_Dm = SecondVertexFit::instance();
+    svtxfit_Dm->init();
+    svtxfit_Dm->setPrimaryVertex(bs);
+    svtxfit_Dm->AddTrack(0, wDm);
+    svtxfit_Dm->setVpar(vtxfit_Dm->vpar(0));
+    if (!svtxfit_Dm->Fit()) return false;
+    HepPoint3D sv_Dm = svtxfit_Dm->crossPoint();
+    for (int i = 0; i < 3; i++) {cp_Dm[i] = sv_Dm[i];}
+    matrix_svf_Dm[0] = svtxfit_Dm->chisq();
+    matrix_svf_Dm[1] = svtxfit_Dm->ctau();
+    matrix_svf_Dm[2] = svtxfit_Dm->decayLength();
+    matrix_svf_Dm[3] = svtxfit_Dm->decayLengthError();
     return true;
 }

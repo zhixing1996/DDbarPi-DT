@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 """
-Plot invariant mass of D0 and Dm
+Plot L/Lerr of D0 and D- after second vertex fit
 """
 
 __author__ = "Maoqiang JING <jingmq@ihep.ac.cn>"
 __copyright__ = "Copyright (c) Maoqiang JING"
-__created__ = "[2020-07-08 Thr 18:53]"
+__created__ = "[2020-12-21 Mon 01:56]"
 
+import ROOT
 from ROOT import *
 import sys, os
 import logging
 from math import *
-from tools import width
 logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s - %(levelname)s- %(message)s')
 gStyle.SetOptTitle(0) # quench title
 gStyle.SetPadTickX(1) # dicide on boxing on or not of x and y axis  
@@ -20,21 +20,22 @@ gStyle.SetPadTickY(1) # dicide on boxing on or not of x and y axis
 def usage():
     sys.stdout.write('''
 NAME
-    plot_m_D0Dm.py
+    plot_L_Lerr.py
 
 SYNOPSIS
-    ./plot_m_D0Dm.py [ecms]
+    ./plot_L_Lerr.py [ecms] [D_type]
 
 AUTHOR
     Maoqiang JING <jingmq@ihep.ac.cn>
 
 DATE
-    July 2020
+    December 2020
 \n''')
 
-def set_legend(legend, h1, h2):
+def set_legend(legend, h1, h2, title):
     legend.AddEntry(h1, 'data')
     legend.AddEntry(h2, 'sideband')
+    legend.SetHeader(title)
     legend.SetBorderSize(0)
     legend.SetFillColor(0)
     legend.SetLineColor(0)
@@ -46,20 +47,11 @@ def set_pavetext(pt):
     pt.SetTextAlign(10)
     pt.SetTextSize(0.05)
 
-def set_arrow(arrow, color):
-    arrow.SetLineWidth(4)
-    arrow.SetLineColor(color)
-    arrow.SetFillColor(color)
-
-def m_DDbar_fill(t, h):
-    count = 0
+def L_Lerr_fill(t, h, D_type):
     for ientry in xrange(t.GetEntries()):
         t.GetEntry(ientry)
-        # if t.m_Lxy_svf_D0 > 0.2 or t.m_Lxy_svf_Dm > 0.2:
-        #     continue
-        h.Fill(t.m_m_D0Dm)
-        count += 1
-    return count
+        if D_type == 'D0': h.Fill(t.m_L_svf_D0/t.m_Lerr_svf_D0)
+        if D_type == 'Dm': h.Fill(t.m_L_svf_Dm/t.m_Lerr_svf_Dm)
 
 def set_histo_style(h, xtitle, ytitle, color, fill_style):
     h.GetXaxis().SetNdivisions(509)
@@ -90,7 +82,7 @@ def set_canvas_style(mbc):
     mbc.SetTopMargin(0.1)
     mbc.SetBottomMargin(0.15)
 
-def plot(path, leg_title, ecms, xmin, xmax, xbins):
+def plot(path, leg_title, ecms, xmin, xmax, xbins, D_type):
     try:
         f_data = TFile(path[0])
         t_data = f_data.Get('save')
@@ -131,47 +123,31 @@ def plot(path, leg_title, ecms, xmin, xmax, xbins):
     except:
         logging.error(path[4] + ' is invalid!')
         sys.exit()
-    # try:
-    #     f_DDPI = TFile(path[5])
-    #     t_DDPI = f_DDPI.Get('save')
-    #     entries_DDPI = t_DDPI.GetEntries()
-    #     logging.info('MC(DDPI) entries :'+str(entries_DDPI))
-    # except:
-    #     logging.error(path[5] + ' is invalid!')
-    #     sys.exit()
 
     mbc = TCanvas('mbc', 'mbc', 800, 600)
     set_canvas_style(mbc)
-    content = int((xmax - xmin)/xbins * 1000)
-    ytitle = 'Entries/%.1f MeV'%content
-    xtitle = 'M(D^{-}D^{0}) (GeV)'
+    ytitle = 'Entries'
+    xtitle = 'L/#Delta_{L}'
 
     h_data = TH1F('data', 'data', xbins, xmin, xmax)
     set_histo_style(h_data, xtitle, ytitle, 1, -1)
-    num_data = m_DDbar_fill(t_data, h_data)
+    L_Lerr_fill(t_data, h_data, D_type)
 
     h_side1 = TH1F('side1', 'side1', xbins, xmin, xmax)
     set_histo_style(h_side1, xtitle, ytitle, 3, 3004)
-    num_side1 = m_DDbar_fill(t_side1, h_side1)
+    L_Lerr_fill(t_side1, h_side1, D_type)
 
     h_side2 = TH1F('side2', 'side2', xbins, xmin, xmax)
     set_histo_style(h_side2, xtitle, ytitle, 3, 3004)
-    num_side2 = m_DDbar_fill(t_side2, h_side2)
+    L_Lerr_fill(t_side2, h_side2, D_type)
 
     h_side3 = TH1F('side3', 'side3', xbins, xmin, xmax)
     set_histo_style(h_side3, xtitle, ytitle, 3, 3004)
-    num_side3 = m_DDbar_fill(t_side3, h_side3)
+    L_Lerr_fill(t_side3, h_side3, D_type)
 
     h_side4 = TH1F('side4', 'side4', xbins, xmin, xmax)
     set_histo_style(h_side4, xtitle, ytitle, 3, 3004)
-    num_side4 = m_DDbar_fill(t_side4, h_side4)
-
-    # h_DDPI = TH1F('DDPI', 'DDPI', xbins, xmin, xmax)
-    # set_histo_style(h_DDPI, xtitle, ytitle, 3, 3004)
-    # num_DDPI = m_DDbar_fill(t_DDPI, h_DDPI)
-
-    print "Ratio of background: %.5f" %(((num_side1 + num_side2) * 0.5 - (num_side3 + num_side4) * 0.25) / num_data)
-    # print "Eff of MC: %.5f" %(num_DDPI/1000000.)
+    L_Lerr_fill(t_side4, h_side4, D_type)
 
     h_side1.Add(h_side2)
     h_side1.Scale(0.5)
@@ -191,26 +167,23 @@ def plot(path, leg_title, ecms, xmin, xmax, xbins):
     pt.AddText('e^{+}e^{-}#rightarrowD^{0}D^{-}#pi^{+}')
 
     legend = TLegend(0.6, 0.55, 0.75, 0.7)
-    set_legend(legend, h_data, h_side1)
+    set_legend(legend, h_data, h_side1, leg_title)
     legend.Draw()
-
-    # Arr = TArrow(4.4, 0.5, 4.4, 25, 0.01, '<')
-    # set_arrow(Arr, 2)
-    # Arr.Draw()
 
     if not os.path.exists('./figs/'):
         os.makedirs('./figs/')
+    
+    mbc.SaveAs('./figs/L_Lerr_'+str(ecms)+'_'+D_type+'.pdf')
 
-    mbc.SaveAs('./figs/m_D0Dm_'+str(ecms)+'.pdf')
-
-    raw_input('Press <Enter> to end...')
+    raw_input('Enter anything to end...')
 
 if __name__ == '__main__':
     args = sys.argv[1:]
-    if len(args)<1:
+    if len(args)<2:
         usage()
         sys.exit()
     ecms = int(args[0])
+    D_type = args[1]
 
     path =[]
     path.append('/besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT/run/DDbarPi/anaroot/data/'+str(ecms)+'/data_'+str(ecms)+'_signal.root')
@@ -220,7 +193,5 @@ if __name__ == '__main__':
     path.append('/besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT/run/DDbarPi/anaroot/data/'+str(ecms)+'/data_'+str(ecms)+'_side4.root')
     path.append('/besfs/groups/cal/dedx/$USER/bes/DDbarPi-DT/run/DDbarPi/anaroot/mc/DDPI/'+str(ecms)+'/mc_DDPI_'+str(ecms)+'_signal.root')
     leg_title = str(ecms) + ' MeV'
-    xmin = 3.65
-    xmax = 4.55
-    xbins = int((xmax - xmin)/0.01)
-    plot(path, leg_title, ecms, xmin, xmax, xbins)
+    xmin, xmax, xbins = -5., 5., 200
+    plot(path, leg_title, ecms, xmin, xmax, xbins, D_type)

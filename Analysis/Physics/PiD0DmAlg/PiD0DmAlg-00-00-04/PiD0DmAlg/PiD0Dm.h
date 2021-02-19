@@ -161,7 +161,11 @@ class PiD0Dm : public Algorithm {
         double p4_pip_6c[4];
 
         // secondary vertex fit for D0 and Dm
-        double matrix_svf[4];
+        double vtx[3];
+        double cp_D0[3]; // cross point of D0
+        double cp_Dm[3]; // cross point of Dm
+        double matrix_svf_D0[4];
+        double matrix_svf_Dm[4];
         double chisq_svf_D0;
         double ctau_svf_D0;
         double L_svf_D0;
@@ -239,6 +243,9 @@ class PiD0Dm : public Algorithm {
         NTuple::Item<double>    m_ctau_svf_Dm_signal;
         NTuple::Item<double>    m_L_svf_Dm_signal;
         NTuple::Item<double>    m_Lerr_svf_Dm_signal;
+        NTuple::Array<double>   m_vtx_signal;
+        NTuple::Array<double>   m_cp_D0_signal;
+        NTuple::Array<double>   m_cp_Dm_signal;
         
         NTuple::Tuple*          m_tuple_side1_low;
         NTuple::Item<int>       m_runNo_side1_low;
@@ -307,6 +314,9 @@ class PiD0Dm : public Algorithm {
         NTuple::Item<double>    m_ctau_svf_Dm_side1_low;
         NTuple::Item<double>    m_L_svf_Dm_side1_low;
         NTuple::Item<double>    m_Lerr_svf_Dm_side1_low;
+        NTuple::Array<double>   m_vtx_side1_low;
+        NTuple::Array<double>   m_cp_D0_side1_low;
+        NTuple::Array<double>   m_cp_Dm_side1_low;
 
         NTuple::Tuple*          m_tuple_side1_up;
         NTuple::Item<int>       m_runNo_side1_up;
@@ -375,6 +385,9 @@ class PiD0Dm : public Algorithm {
         NTuple::Item<double>    m_ctau_svf_Dm_side1_up;
         NTuple::Item<double>    m_L_svf_Dm_side1_up;
         NTuple::Item<double>    m_Lerr_svf_Dm_side1_up;
+        NTuple::Array<double>   m_vtx_side1_up;
+        NTuple::Array<double>   m_cp_D0_side1_up;
+        NTuple::Array<double>   m_cp_Dm_side1_up;
 
         NTuple::Tuple*          m_tuple_side2_low;
         NTuple::Item<int>       m_runNo_side2_low;
@@ -443,6 +456,9 @@ class PiD0Dm : public Algorithm {
         NTuple::Item<double>    m_ctau_svf_Dm_side2_low;
         NTuple::Item<double>    m_L_svf_Dm_side2_low;
         NTuple::Item<double>    m_Lerr_svf_Dm_side2_low;
+        NTuple::Array<double>   m_vtx_side2_low;
+        NTuple::Array<double>   m_cp_D0_side2_low;
+        NTuple::Array<double>   m_cp_Dm_side2_low;
 
         NTuple::Tuple*          m_tuple_side2_up;
         NTuple::Item<int>       m_runNo_side2_up;
@@ -511,6 +527,9 @@ class PiD0Dm : public Algorithm {
         NTuple::Item<double>    m_ctau_svf_Dm_side2_up;
         NTuple::Item<double>    m_L_svf_Dm_side2_up;
         NTuple::Item<double>    m_Lerr_svf_Dm_side2_up;
+        NTuple::Array<double>   m_vtx_side2_up;
+        NTuple::Array<double>   m_cp_D0_side2_up;
+        NTuple::Array<double>   m_cp_Dm_side2_up;
 
         NTuple::Tuple*          m_tuple_side3_low;
         NTuple::Item<int>       m_runNo_side3_low;
@@ -579,6 +598,9 @@ class PiD0Dm : public Algorithm {
         NTuple::Item<double>    m_ctau_svf_Dm_side3_low;
         NTuple::Item<double>    m_L_svf_Dm_side3_low;
         NTuple::Item<double>    m_Lerr_svf_Dm_side3_low;
+        NTuple::Array<double>   m_vtx_side3_low;
+        NTuple::Array<double>   m_cp_D0_side3_low;
+        NTuple::Array<double>   m_cp_Dm_side3_low;
 
         NTuple::Tuple*          m_tuple_side3_up;
         NTuple::Item<int>       m_runNo_side3_up;
@@ -647,6 +669,9 @@ class PiD0Dm : public Algorithm {
         NTuple::Item<double>    m_ctau_svf_Dm_side3_up;
         NTuple::Item<double>    m_L_svf_Dm_side3_up;
         NTuple::Item<double>    m_Lerr_svf_Dm_side3_up;
+        NTuple::Array<double>   m_vtx_side3_up;
+        NTuple::Array<double>   m_cp_D0_side3_up;
+        NTuple::Array<double>   m_cp_Dm_side3_up;
 
         NTuple::Tuple*          m_tuple_side4_low;
         NTuple::Item<int>       m_runNo_side4_low;
@@ -715,6 +740,9 @@ class PiD0Dm : public Algorithm {
         NTuple::Item<double>    m_ctau_svf_Dm_side4_low;
         NTuple::Item<double>    m_L_svf_Dm_side4_low;
         NTuple::Item<double>    m_Lerr_svf_Dm_side4_low;
+        NTuple::Array<double>   m_vtx_side4_low;
+        NTuple::Array<double>   m_cp_D0_side4_low;
+        NTuple::Array<double>   m_cp_Dm_side4_low;
 
         NTuple::Tuple*          m_tuple_side4_up;
         NTuple::Item<int>       m_runNo_side4_up;
@@ -783,12 +811,15 @@ class PiD0Dm : public Algorithm {
         NTuple::Item<double>    m_ctau_svf_Dm_side4_up;
         NTuple::Item<double>    m_L_svf_Dm_side4_up;
         NTuple::Item<double>    m_Lerr_svf_Dm_side4_up;
+        NTuple::Array<double>   m_vtx_side4_up;
+        NTuple::Array<double>   m_cp_D0_side4_up;
+        NTuple::Array<double>   m_cp_Dm_side4_up;
 
         void recordVariables(std::string sample_type);
         double fitVertex(VWTrkPara &vwtrkpara, VertexParameter &birth);
         bool fitpi0(VWTrkPara &vwtrkpara_photons, VertexParameter &birth);
         int MatchMC(HepLorentzVector &p4, std::string MODE);
-        bool fitSecondVertex(VWTrkPara &vwtrkpara);
+        bool fitSecondVertex(VWTrkPara &vwtrkpara_D0, VWTrkPara &vwtrkpara_Dm, VWTrkPara &vwtrkpara_pi);
 };
 
 const double mpi = 0.13957;

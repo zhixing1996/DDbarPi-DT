@@ -103,10 +103,12 @@ def save(f_in, t, cms, mode):
     m_ctau_svf_D0 = array('d', [999.])
     m_L_svf_D0 = array('d', [999.])
     m_Lerr_svf_D0 = array('d', [999.])
+    m_Lxy_svf_D0 = array('d', [999.])
     m_chi2_svf_Dm = array('d', [999.])
     m_ctau_svf_Dm = array('d', [999.])
     m_L_svf_Dm = array('d', [999.])
     m_Lerr_svf_Dm = array('d', [999.])
+    m_Lxy_svf_Dm = array('d', [999.])
     t.Branch('runNo', m_runNo, 'm_runNo/I')
     t.Branch('evtNo', m_evtNo, 'm_evtNo/I')
     t.Branch('indexmc', m_indexmc, 'indexmc/I')
@@ -177,10 +179,12 @@ def save(f_in, t, cms, mode):
     t.Branch('ctau_svf_D0', m_ctau_svf_D0, 'm_ctau_svf_D0/D')
     t.Branch('L_svf_D0', m_L_svf_D0, 'm_L_svf_D0/D')
     t.Branch('Lerr_svf_D0', m_Lerr_svf_D0, 'm_Lerr_svf_D0/D')
+    t.Branch('Lxy_svf_D0', m_Lxy_svf_D0, 'm_Lxy_svf_D0/D')
     t.Branch('chi2_svf_Dm', m_chi2_svf_Dm, 'm_chi2_svf_Dm/D')
     t.Branch('ctau_svf_Dm', m_ctau_svf_Dm, 'm_ctau_svf_Dm/D')
     t.Branch('L_svf_Dm', m_L_svf_Dm, 'm_L_svf_Dm/D')
     t.Branch('Lerr_svf_Dm', m_Lerr_svf_Dm, 'm_Lerr_svf_Dm/D')
+    t.Branch('Lxy_svf_Dm', m_Lxy_svf_Dm, 'm_Lxy_svf_Dm/D')
     M_Dm = 1.86965
     M_D0 = 1.86483
     if mode == 'signal': t_dtd = f_in.Get('DTD_signal')
@@ -381,10 +385,12 @@ def save(f_in, t, cms, mode):
         m_ctau_svf_D0[0] = t_dtd.ctau_svf_D0
         m_L_svf_D0[0] = t_dtd.L_svf_D0
         m_Lerr_svf_D0[0] = t_dtd.Lerr_svf_D0
+        m_Lxy_svf_D0[0] = sqrt((t_dtd.vtx[0] - t_dtd.cp_D0[0])**2 + (t_dtd.vtx[1] - t_dtd.cp_D0[1])**2)
         m_chi2_svf_Dm[0] = t_dtd.chisq_svf_Dm
         m_ctau_svf_Dm[0] = t_dtd.ctau_svf_Dm
         m_L_svf_Dm[0] = t_dtd.L_svf_Dm
         m_Lerr_svf_Dm[0] = t_dtd.Lerr_svf_Dm
+        m_Lxy_svf_Dm[0] = sqrt((t_dtd.vtx[0] - t_dtd.cp_Dm[0])**2 + (t_dtd.vtx[1] - t_dtd.cp_Dm[1])**2)
         t.Fill()
 
 def main():
